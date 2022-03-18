@@ -25,8 +25,6 @@ export const getGashaponRewardByPageTask = createReduxAsyncTask({
 
                 const limit = 500
 
-                let defaultTypeId = undefined
-
                 const typeIds = []
                 const temp = {}
 
@@ -41,7 +39,7 @@ export const getGashaponRewardByPageTask = createReduxAsyncTask({
                         const typeId = findTypeId(currentTokenId)
                         const current = temp[typeId] || []
 
-                        if (typeId !== defaultTypeId) {
+                        if (!temp?.[typeId]) {
                             typeIds.push(typeId)
                             const uri = yield toUriNFTsContract(nftTokenRewardAddress, currentTokenId.toString())
                             if (uri) {
@@ -53,7 +51,6 @@ export const getGashaponRewardByPageTask = createReduxAsyncTask({
                             current.push(undefined)
                             temp[typeId] = current
                         }
-                        defaultTypeId = typeId
                     }
                     currentPage += 1
 
