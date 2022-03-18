@@ -1,0 +1,11 @@
+# Ignore artifacts:
+dist
+build
+
+# Dependency directories
+node_modules/
+
+# file
+*.yml
+*.lock
+*.env
